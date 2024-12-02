@@ -1,4 +1,4 @@
-public class Person {
+public abstract class Person {
     private int id ;
     private String name ;
     private String gender ;
@@ -34,7 +34,7 @@ public class Person {
     public String getGender() {
         return gender;
     }
-    
+
     public void setGender(String gender) {
         this.gender = gender;
     }
