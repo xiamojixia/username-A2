@@ -2,23 +2,17 @@ public class Person {
     private int id ;
     private String name ;
     private String gender ;
-    private String group ; //Child or adult
-    private String ticketType ; //Individual, family, or group
-    
-    public Person(int id, String name, String gender, String group, String ticketType){
+
+    public Person(int id, String name, String gender){
         this.id = id;
         this.name = name;
         this.gender = gender;
-        this.group = group;
-        this.ticketType = ticketType;
     }
     
     public Person(){
         this.id = 0;
         this.name = "None";
         this.gender = "None";
-        this.group = "None";
-        this.ticketType = "None";
     }
 
     public int getId() {
@@ -40,24 +34,8 @@ public class Person {
     public String getGender() {
         return gender;
     }
-
+    
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public String getTicketType() {
-        return ticketType;
-    }
-
-    public void setTicketType(String ticketType) {
-        this.ticketType = ticketType;
     }
 }
