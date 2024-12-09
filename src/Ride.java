@@ -45,21 +45,51 @@ public class Ride {
         this.operator = operator ;
     }
 
-
     public void addVisitorToQueue(Visitor visitor) {
-        if (visitor != null) {
-            visitorQueue.add(visitor);
+        visitorQueue.add(visitor);
+        boolean isAdded = false;
+        for (Visitor v : visitorQueue) {
+            if (v.getName().equals(visitor.getName())) {
+                isAdded = true;
+                break;
+            }
+        }
+        if (isAdded == true){
             System.out.println(visitor.getName()+" has been successfully added.");
+            System.out.println("------------------------------");
         }
         else {
-            System.out.println("Add failed.");
+            System.out.println(visitor.getName()+" add failed.");
+            System.out.println("------------------------------");
         }
     }
 
     public void removeVisitorFromQueue() {
-
+        if (!visitorQueue.isEmpty()) {
+            Visitor removedVisitor = visitorQueue.poll();
+            System.out.println(removedVisitor.getName() + " has been removed from the queue.");
+            System.out.println("------------------------------");
+        }
+        else {
+            System.out.println("No visitors in the queue to remove.");
+        }
     }
 
+    public void printQueue() {
+        if (visitorQueue.isEmpty()) {
+            System.out.println("There are currently no visitors in Queue.");
+            return;
+        }
+        System.out.println("The current visitors are as follows:");
+        for (Visitor visitor : visitorQueue) {
+            System.out.println("Id: " + visitor.getId());
+            System.out.println("Name: " + visitor.getName());
+            System.out.println("Gender: " + visitor.getGender());
+            System.out.println("Group: " + visitor.getGroup());
+            System.out.println("TicketType: " + visitor.getTicketType());
+            System.out.println("------------------------------");
+        }
+    }
     
     public interface RideInterface {
         void addVisitorToQueue(Visitor visitor);
