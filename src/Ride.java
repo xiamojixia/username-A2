@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -76,12 +77,14 @@ public class Ride {
         }
         else {
             System.out.println("No visitors in the queue to remove.");
+            System.out.println("------------------------------");
         }
     }
 
     public void printQueue() {
         if (visitorQueue.isEmpty()) {
             System.out.println("There are currently no visitors in Queue.");
+            System.out.println("------------------------------");
             return;
         }
         System.out.println("The current visitors are as follows:");
@@ -98,21 +101,25 @@ public class Ride {
     public void addVisitorToHistory(Visitor visitor) {
         rideHistory.add(visitor);
         System.out.println(visitor.getName()+" has been successfully added to ride history.");
+        System.out.println("------------------------------");
     }
 
     public boolean checkVisitorFromHistory(Visitor visitor) {
         for (Visitor v : rideHistory) {
             if (v.equals(visitor)) {
                 System.out.println(visitor.getName() + " is found in the ride history.");
+                System.out.println("------------------------------");
                 return true;
             }
         }    
         System.out.println("No History.");
+        System.out.println("------------------------------");
         return false;
     }
 
     public int numberOfVisitors() {
         System.out.println("Total visitors in the ride history: " + rideHistory.size());
+        System.out.println("------------------------------");
         return rideHistory.size();
     }
     
@@ -132,8 +139,20 @@ public class Ride {
         }
         else {
             System.out.println("Ride History record is empty.");
+            System.out.println("------------------------------");
             return;
         }
+    }
+
+    public void sortHistory() {
+        if (rideHistory.isEmpty()) {
+            System.out.println("No History.");
+            System.out.println("------------------------------");
+            return;
+        }
+        Collections.sort(rideHistory, new VisitorSorting());
+        System.out.println("Ride history has been successfully sorted.");
+        System.out.println("------------------------------");
     }
 
     public interface RideInterface {

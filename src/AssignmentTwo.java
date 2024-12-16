@@ -1,9 +1,9 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
-        partThree();
+        partFourB();
     }
 
-    public static void partThree(){
+    public void partThree(){
         Ride r1 = new Ride();
 
         Visitor v1 = new Visitor(1, "Xia1", "Female", "Child", "Group");
@@ -24,11 +24,50 @@ public class AssignmentTwo {
     }
 
     public void partFourA(){
+        Ride r2 = new Ride();
 
+        Visitor v1 = new Visitor(1, "Xia1", "Female", "Child", "Group");
+
+        Visitor v6 = new Visitor(6, "Xia6", "Female", "Child", "Group");
+        Visitor v7 = new Visitor(7, "Xia7", "Male", "Child", "Family");
+        Visitor v8 = new Visitor(8, "Xia8", "Female", "Child", "Family");
+        Visitor v9 = new Visitor(9, "Xia9", "Male", "Adult", "Family");
+        Visitor v10 = new Visitor(10, "Xia10", "Female", "Adult", "Individual");
+
+        r2.addVisitorToHistory(v6);
+        r2.addVisitorToHistory(v7);
+        r2.addVisitorToHistory(v8);
+        r2.addVisitorToHistory(v9);
+        r2.addVisitorToHistory(v10);
+
+        r2.checkVisitorFromHistory(v10);
+        r2.checkVisitorFromHistory(v1);
+
+        r2.numberOfVisitors();
+
+        r2.printRideHistory();
     }
 
-    public void partFourB(){
+    public static void partFourB(){
+        Ride r3 = new Ride();
 
+        Visitor v6 = new Visitor(6, "Xia6", "Female", "Child", "Group");
+        Visitor v7 = new Visitor(7, "Xia7", "Male", "Child", "Family");
+        Visitor v8 = new Visitor(8, "Xia8", "Female", "Child", "Family");
+        Visitor v9 = new Visitor(9, "Xia9", "Male", "Adult", "Family");
+        Visitor v10 = new Visitor(10, "Xia10", "Female", "Adult", "Individual");
+
+        r3.addVisitorToHistory(v10);
+        r3.addVisitorToHistory(v8);
+        r3.addVisitorToHistory(v9);
+        r3.addVisitorToHistory(v6);
+        r3.addVisitorToHistory(v7);
+
+        r3.printRideHistory();
+
+        r3.sortHistory();
+
+        r3.printRideHistory();
     }
 
     public void partFive(){
