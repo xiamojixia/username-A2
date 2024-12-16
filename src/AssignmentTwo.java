@@ -128,10 +128,8 @@ public class AssignmentTwo {
         
         r6.importRideHistory("History.csv");
 
-        // 打印导入的游客数量
         System.out.println("Number of Visitors imported: " + r6.numberOfVisitors());
         
-        // 打印所有游客的详细信息
         r6.printRideHistory();
     }
 }
