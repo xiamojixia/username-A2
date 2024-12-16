@@ -9,6 +9,8 @@ public class Ride {
     private Employee operator ;
     private Queue<Visitor> visitorQueue ;
     private LinkedList<Visitor> rideHistory;
+    private int maxRider;
+    private int numOfCycles;
 
     public Ride(){
         this.rideName = "None" ;
@@ -16,6 +18,8 @@ public class Ride {
         this.operator = null ;
         this.visitorQueue = new LinkedList<>();
         this.rideHistory = new LinkedList<>();
+        this.maxRider = 5;
+        this.numOfCycles = 0;
     }
 
     public Ride(String rideName, String rideStatus, Employee operator){
@@ -24,6 +28,7 @@ public class Ride {
         this.operator = operator ;
         this.visitorQueue = new LinkedList<>();
         this.rideHistory = new LinkedList<>();
+        this.maxRider = 5;
     }
 
     public String getRideName() {
@@ -152,6 +157,39 @@ public class Ride {
         }
         Collections.sort(rideHistory, new VisitorSorting());
         System.out.println("Ride history has been successfully sorted.");
+        System.out.println("------------------------------");
+    }
+
+    public void RunOneCycle() {
+        if (operator == null) {
+            System.out.println("Ride cannot be run without an operator.");
+            System.out.println("------------------------------");
+            return;
+        }
+    
+        if (visitorQueue.isEmpty()) {
+            System.out.println("No visitors in the queue. Ride cannot be run.");
+            System.out.println("------------------------------");
+            return;
+        }
+    
+        System.out.println("Running...");
+        System.out.println("------------------------------");
+        int count = 0;
+    
+        while (count < maxRider && !visitorQueue.isEmpty()) {
+            Visitor visitor = visitorQueue.poll();
+            if(visitor != null) {
+                rideHistory.add(visitor);
+                count++;
+                System.out.println("Visitor " + visitor.getName() + " has taken the ride.");
+                System.out.println("------------------------------");
+            }
+        }
+    
+        numOfCycles++;
+        System.out.println("Cycle completed. Number of visitors in this cycle: " + count);
+        System.out.println("Number of cycle runs: " + numOfCycles);
         System.out.println("------------------------------");
     }
 
