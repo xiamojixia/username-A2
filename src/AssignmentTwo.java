@@ -1,6 +1,6 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
-        partSeven();
+    
     }
 
     public void partThree(){
@@ -123,7 +123,7 @@ public class AssignmentTwo {
         r5.exportRideHistory("History.csv");
     }
     
-    public static void partSeven(){
+    public void partSeven(){
         Ride r6 = new Ride();
         
         r6.importRideHistory("History.csv");
