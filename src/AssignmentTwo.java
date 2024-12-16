@@ -1,6 +1,6 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
-        partFive();
+        partSeven();
     }
 
     public void partThree(){
@@ -70,7 +70,7 @@ public class AssignmentTwo {
         r3.printRideHistory();
     }
 
-    public static void partFive(){
+    public void partFive(){
         Employee bob = new Employee(1,"Bob","Male","Regular","Rounder");
         Ride r4 = new Ride("Rounder","Open",bob);
 
@@ -96,10 +96,9 @@ public class AssignmentTwo {
         r4.addVisitorToQueue(v9);
         r4.addVisitorToQueue(v10);
 
-
         r4.printQueue();
 
-        r4.RunOneCycle();
+        r4.runOneCycle();
 
         r4.printQueue();
 
@@ -107,10 +106,32 @@ public class AssignmentTwo {
     }
 
     public void partSix(){
+        Ride r5 = new Ride();
 
+        Visitor v6 = new Visitor(6, "Xia6", "Female", "Child", "Group");
+        Visitor v7 = new Visitor(7, "Xia7", "Male", "Child", "Family");
+        Visitor v8 = new Visitor(8, "Xia8", "Female", "Child", "Family");
+        Visitor v9 = new Visitor(9, "Xia9", "Male", "Adult", "Family");
+        Visitor v10 = new Visitor(10, "Xia10", "Female", "Adult", "Individual");
+
+        r5.addVisitorToHistory(v10);
+        r5.addVisitorToHistory(v8);
+        r5.addVisitorToHistory(v9);
+        r5.addVisitorToHistory(v6);
+        r5.addVisitorToHistory(v7);
+
+        r5.exportRideHistory("History.csv");
     }
     
-    public void partSeven(){
+    public static void partSeven(){
+        Ride r6 = new Ride();
+        
+        r6.importRideHistory("History.csv");
 
+        // 打印导入的游客数量
+        System.out.println("Number of Visitors imported: " + r6.numberOfVisitors());
+        
+        // 打印所有游客的详细信息
+        r6.printRideHistory();
     }
 }

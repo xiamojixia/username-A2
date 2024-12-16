@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -160,19 +164,17 @@ public class Ride {
         System.out.println("------------------------------");
     }
 
-    public void RunOneCycle() {
+    public void runOneCycle() {
         if (operator == null) {
             System.out.println("Ride cannot be run without an operator.");
             System.out.println("------------------------------");
             return;
         }
-    
         if (visitorQueue.isEmpty()) {
             System.out.println("No visitors in the queue. Ride cannot be run.");
             System.out.println("------------------------------");
             return;
         }
-    
         System.out.println("Running...");
         System.out.println("------------------------------");
         int count = 0;
@@ -186,11 +188,75 @@ public class Ride {
                 System.out.println("------------------------------");
             }
         }
-    
         numOfCycles++;
         System.out.println("Cycle completed. Number of visitors in this cycle: " + count);
         System.out.println("Number of cycle runs: " + numOfCycles);
         System.out.println("------------------------------");
+    }
+
+    public void exportRideHistory(String fileName) {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(fileName);
+            for (Visitor visitor : rideHistory) {
+                String line = visitor.getId() + "," + visitor.getName() + "," + visitor.getGender() + "," + visitor.getGroup() + "," + visitor.getTicketType();
+                writer.println(line);
+            }
+            System.out.println("Ride history successfully written to file.");
+            System.out.println("------------------------------");
+        }
+        catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println("------------------------------");
+        }
+        finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
+    }
+
+    public void importRideHistory(String fileName) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if (data.length == 5) {
+                    int id = Integer.parseInt(data[0]);
+                    String name = data[1];
+                    String gender = data[2];
+                    String group = data[3];
+                    String ticketType = data[4];
+
+                    Visitor visitor = new Visitor(id, name, gender, group, ticketType);
+                    rideHistory.add(visitor);
+                    System.out.println(visitor.getName() + " has been successfully added to ride history.");
+                }
+                else {
+                    System.out.println("Invalid data format: " + line);
+                    System.out.println("------------------------------");
+                }
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
+            System.out.println("------------------------------");
+        }
+        finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Error closing reader: " + e.getMessage());
+                System.out.println("------------------------------");
+            }
+        }
     }
 
     public interface RideInterface {
